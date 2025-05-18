@@ -54,6 +54,19 @@ export const CasoJuridicoSchema = z.object({
   fecha_asignacion: z.string()
 });
 
+export const entrevistadorSchema = z.object({
+  id: z.number(),
+  primer_nombre: z.string().min(1, "Primero nombre es requerido"),
+  segundo_nombre: z.string().min(1, "Segundo nombre es requerido"),
+  primer_apellido: z.string().min(1, "Primero apellido es requerido"),
+  segundo_apellido: z.string().min(1, "segundo apellido es requerido"),
+  codigo_estudiante: z.number(),
+  id_usuario: z.number(),
+  hoja_vida: z.number(),
+  fecha_entrevista: z.string().min(1, "Fecha de entrevista es requerida"),
+  observacion: z.string().min(1, "Observación es requerida"),
+});
+
 // Keep these for backward compatibility if needed
 export const ExperienceSchema = z.object({
   companyName: z.string().min(1, "Company name is required"),
@@ -77,11 +90,13 @@ export const FormDataSchema = z.object({
   datosBasicos: DatosBasicosSchema,
   caracterizacionSocioeconomica: CaracterizacionSocioeconomicaSchema,
   casoJuridico: CasoJuridicoSchema,
+  entrevistador: entrevistadorSchema
 });
 
 export type DatosBasicos = z.infer<typeof DatosBasicosSchema>;
 export type CaracterizacionSocioeconomica = z.infer<typeof CaracterizacionSocioeconomicaSchema>;
 export type CasoJuridico = z.infer<typeof CasoJuridicoSchema>;
+export type Entrevistador = z.infer<typeof entrevistadorSchema>;
 export type Experience = z.infer<typeof ExperienceSchema>;
 export type EducationBackground = z.infer<typeof EducationBackgroundSchema>;
 export type Education = z.infer<typeof EducationSchema>;

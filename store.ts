@@ -3,6 +3,7 @@ import {
   DatosBasicos,
   CaracterizacionSocioeconomica,
   CasoJuridico,
+  Entrevistador,
   FormData,
 } from "./validation.schema";
 
@@ -15,6 +16,7 @@ interface JobAppState {
   setDatosBasicos: (data: Partial<DatosBasicos>) => void;
   setCaracterizacionSocioeconomica: (data: Partial<CaracterizacionSocioeconomica>) => void;
   setCasoJuridico: (data: Partial<CasoJuridico>) => void;
+  setDatosEntrevista: (data: Partial<Entrevistador>) => void;  // Nueva función para actualizar datos de entrevista
   submitForm: () => void;
 }
 
@@ -72,6 +74,18 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
       id_usuario_asignado: 0,
       fecha_asignacion: ""
     },
+    entrevistador: {
+      id: 0,
+      primer_nombre: "",
+      segundo_nombre: "",
+      primer_apellido: "",
+      segundo_apellido: "",
+      codigo_estudiante: 0,
+      id_usuario: 0,
+      hoja_vida: 0,
+      fecha_entrevista: "",
+      observacion: ""
+    }
   },
   nextStep: () => set((state) => ({ step: state.step + 1 })),
   prevStep: () => set((state) => ({ step: state.step - 1 })),
@@ -104,6 +118,16 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
         ...state.formData,
         casoJuridico: {
           ...state.formData.casoJuridico,
+          ...data,
+        },
+      },
+    })),
+  setDatosEntrevista: (data) => 
+    set((state) => ({
+      formData: {
+        ...state.formData,
+        entrevistador: {
+          ...state.formData.entrevistador,
           ...data,
         },
       },
@@ -166,6 +190,18 @@ const useJobAppStore = create<JobAppState>((set, get) => ({
             id_usuario_asignado: 0,
             fecha_asignacion: ""
           },
+          entrevistador: {
+            id: 0,
+            primer_nombre: "",
+            segundo_nombre: "",
+            primer_apellido: "",
+            segundo_apellido: "",
+            codigo_estudiante: 0,
+            id_usuario: 0,
+            hoja_vida: 0,
+            fecha_entrevista: "",
+            observacion: ""
+          }
         },
       };
     });
