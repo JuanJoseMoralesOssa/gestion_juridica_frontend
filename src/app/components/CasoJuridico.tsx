@@ -6,12 +6,28 @@ function CasoJuridicoForm() {
   const { nextStep, prevStep, formData, setCasoJuridico } = useJobAppStore();
   const [error, setError] = useState<string>("");
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
-    const { name, value } = e.target;
-    setCasoJuridico({ [name]: value });
-  };
+ const handleChange = (
+  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+) => {
+  const { name, value } = e.target;
+
+  const numberFields = [
+    "id_area_derecho",
+    "id_actividad",
+    "id_estado_caso",
+    "id_datos_basicos",
+    "id_enfoque_diferencial",
+    "id_caracterizacion_socioeconomica",
+    "id_usuario_registra",
+    "id_usuario_asignado",
+  ];
+
+  const parsedValue = numberFields.includes(name)
+    ? Number(value)
+    : value;
+
+  setCasoJuridico({ [name]: parsedValue });
+};
 
   const validateAndNext = () => {
     try {

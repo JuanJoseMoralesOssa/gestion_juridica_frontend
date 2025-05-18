@@ -62,11 +62,6 @@ export const ExperienceSchema = z.object({
   endDate: z.string().min(1, "End date is required"),
 });
 
-export const ExperienceInfoSchema = z.object({
-  fresher: z.boolean(),
-  experiences: z.array(ExperienceSchema),
-});
-
 export const EducationSchema = z.object({
   courseName: z.string().min(1, "Course name is required"),
   schoolName: z.string().min(1, "School name is required"),
@@ -87,7 +82,6 @@ export const FormDataSchema = z.object({
 export type DatosBasicos = z.infer<typeof DatosBasicosSchema>;
 export type CaracterizacionSocioeconomica = z.infer<typeof CaracterizacionSocioeconomicaSchema>;
 export type CasoJuridico = z.infer<typeof CasoJuridicoSchema>;
-export type ExperienceInfo = z.infer<typeof ExperienceInfoSchema>;
 export type Experience = z.infer<typeof ExperienceSchema>;
 export type EducationBackground = z.infer<typeof EducationBackgroundSchema>;
 export type Education = z.infer<typeof EducationSchema>;
