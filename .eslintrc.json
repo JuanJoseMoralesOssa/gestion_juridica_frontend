@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "next/typescript",
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:react/recommended",
+    // "plugin:react-hooks/recommended",
+    // "plugin:jsx-a11y/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
+    // "plugin:import/errors",
+    // "plugin:import/warnings",
+    // "plugin:import/typescript"
+  ]
+}
