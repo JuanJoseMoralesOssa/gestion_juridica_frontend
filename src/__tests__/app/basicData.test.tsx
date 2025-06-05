@@ -71,27 +71,27 @@ describe('DatosBasicos Component', () => {
       expect(screen.getByText('Área de Derecho')).toBeInTheDocument();
     });
 
-    // it('should render all form fields with a good use of label', () => {
-    //   render(<DatosBasicos />);
+    it('should render all form fields with a good use of label', () => {
+      render(<DatosBasicos />);
 
-    //   expect(screen.getByLabelText('Primer Nombre')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Segundo Nombre')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Primer Apellido')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Segundo Apellido')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Número de Documento')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Número de Celular')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Correo Electrónico')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Dirección')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Concepto')).toBeInTheDocument();
+      expect(screen.getByLabelText('Primer Nombre')).toBeInTheDocument();
+      expect(screen.getByLabelText('Segundo Nombre')).toBeInTheDocument();
+      expect(screen.getByLabelText('Primer Apellido')).toBeInTheDocument();
+      expect(screen.getByLabelText('Segundo Apellido')).toBeInTheDocument();
+      expect(screen.getByLabelText('Número de Documento')).toBeInTheDocument();
+      expect(screen.getByLabelText('Número de Celular')).toBeInTheDocument();
+      expect(screen.getByLabelText('Correo Electrónico')).toBeInTheDocument();
+      expect(screen.getByLabelText('Dirección')).toBeInTheDocument();
+      expect(screen.getByLabelText('Concepto')).toBeInTheDocument();
 
-    //   expect(screen.getByLabelText('Tipo de Documento')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Lugar de Expedición')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Rango de Edad')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Sexo')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Discapacidad')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Ciudad de Domicilio')).toBeInTheDocument();
-    //   expect(screen.getByLabelText('Área de Derecho')).toBeInTheDocument();
-    // });
+      expect(screen.getByLabelText('Tipo de Documento')).toBeInTheDocument();
+      expect(screen.getByLabelText('Lugar de Expedición')).toBeInTheDocument();
+      expect(screen.getByLabelText('Rango de Edad')).toBeInTheDocument();
+      expect(screen.getByLabelText('Sexo')).toBeInTheDocument();
+      expect(screen.getByLabelText('Discapacidad')).toBeInTheDocument();
+      expect(screen.getByLabelText('Ciudad de Domicilio')).toBeInTheDocument();
+      expect(screen.getByLabelText('Área de Derecho')).toBeInTheDocument();
+    });
 
     it('should render the submit button', () => {
       render(<DatosBasicos />);
