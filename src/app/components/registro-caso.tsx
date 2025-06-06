@@ -21,9 +21,20 @@ export default function RegistroCasoJuridico() {
   const [fecha] = useState(new Date())
   const [radicado] = useState(`CJ-${new Date().getFullYear()}-###`)
 
-  
+
 const { step } = useJobAppStore();
 
+  /**
+ * Renderiza el componente correspondiente según el paso actual del formulario.
+ *
+ * Sistema de navegación por pasos (stepper):
+ * - Paso 1: Datos Básicos del usuario (información personal)
+ * - Paso 2: Caracterización Socioeconómica (situación económica)
+ * - Paso 3: Caso Jurídico (detalles del caso legal)
+ * - Paso 4: Revisión y Envío (confirmación final)
+ *
+ * @returns {JSX.Element | null} Componente del paso actual o null si es inválido
+ */
   const renderStep = () => {
     switch (step) {
       case 1:

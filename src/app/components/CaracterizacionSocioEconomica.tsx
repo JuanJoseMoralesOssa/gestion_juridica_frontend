@@ -10,19 +10,19 @@ function CaracterizacionSocioeconomica() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setError("");
     const { name, value } = e.target;
-    
+
     // Determine if this field should be treated as a number
-    const isNumberField = name === "id_promedio_ingresos_personales" || 
-                         name === "personas_laborando" || 
-                         name === "id_promedio_ingresos_familiares" || 
-                         name === "id_promedio_egresos" || 
-                         name === "personas_convive" || 
-                         name === "id_estrato" || 
-                         name === "numero_dependientes" || 
+    const isNumberField = name === "id_promedio_ingresos_personales" ||
+                         name === "personas_laborando" ||
+                         name === "id_promedio_ingresos_familiares" ||
+                         name === "id_promedio_egresos" ||
+                         name === "personas_convive" ||
+                         name === "id_estrato" ||
+                         name === "numero_dependientes" ||
                          name === "id_tipo_vivienda";
-    
+
     const processedValue = isNumberField ? parseInt(value) || 0 : value;
-    
+
     setCaracterizacionSocioeconomica({ [name]: processedValue });
   };
 
@@ -69,7 +69,7 @@ function CaracterizacionSocioeconomica() {
               required
             />
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -93,7 +93,7 @@ function CaracterizacionSocioeconomica() {
               <option value={5}>Más de 4 SMMLV</option>
             </select>
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -113,7 +113,7 @@ function CaracterizacionSocioeconomica() {
               required
             />
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -137,7 +137,7 @@ function CaracterizacionSocioeconomica() {
               <option value={5}>Más de 6 SMMLV</option>
             </select>
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -161,7 +161,7 @@ function CaracterizacionSocioeconomica() {
               <option value={5}>Más de 6 SMMLV</option>
             </select>
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -181,7 +181,7 @@ function CaracterizacionSocioeconomica() {
               required
             />
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -206,7 +206,7 @@ function CaracterizacionSocioeconomica() {
               <option value={6}>Estrato 6</option>
             </select>
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -225,7 +225,7 @@ function CaracterizacionSocioeconomica() {
               <span className="ml-2 text-sm text-gray-700">Sí</span>
             </div>
           </div>
-          
+
           {formData.caracterizacionSocioeconomica.dependientes === "S" && (
             <div>
               <label
@@ -247,7 +247,7 @@ function CaracterizacionSocioeconomica() {
               />
             </div>
           )}
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -266,7 +266,7 @@ function CaracterizacionSocioeconomica() {
               <span className="ml-2 text-sm text-gray-700">Sí</span>
             </div>
           </div>
-          
+
           {formData.caracterizacionSocioeconomica.depende === "S" && (
             <div>
               <label
@@ -287,7 +287,7 @@ function CaracterizacionSocioeconomica() {
               </div>
             </div>
           )}
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -310,7 +310,7 @@ function CaracterizacionSocioeconomica() {
               <option value={4}>Compartida</option>
             </select>
           </div>
-          
+
           <div>
             <label
               className="text-lg font-medium text-gray-900"
@@ -329,7 +329,7 @@ function CaracterizacionSocioeconomica() {
               <span className="ml-2 text-sm text-gray-700">Sí</span>
             </div>
           </div>
-          
+
           <div className="md:col-span-2">
             <label
               className="text-lg font-medium text-gray-900"
@@ -349,7 +349,7 @@ function CaracterizacionSocioeconomica() {
           </div>
         </div>
       </div>
-      
+
       {/* buttons */}
       <div className="flex justify-between mt-5">
         <button className="text-blue-500 text-lg sm:text-xl" onClick={prevStep}>

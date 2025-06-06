@@ -6,16 +6,23 @@ function DatosBasicos() {
   const { nextStep, formData, setDatosBasicos } = useJobAppStore();
   const [error, setError] = useState<string>("");
 
+  const numberFields = [
+    "id_tipo_documento", "id_lugar_expedicion", "rango_edad",
+    "id_discapacidad", "id_sexo", "ciudad_domicilio", "id_area_derecho"
+  ];
+
+  const parseFieldValue = (name: string, value: string) => {
+    if (numberFields.includes(name)) {
+      return parseInt(value) || 0;
+    }
+    return value;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setError("");
-    const value = e.target.type === "number" || e.target.name === "id_tipo_documento" || 
-                 e.target.name === "id_lugar_expedicion" || e.target.name === "rango_edad" || 
-                 e.target.name === "id_discapacidad" || e.target.name === "id_sexo" || 
-                 e.target.name === "ciudad_domicilio" || e.target.name === "id_area_derecho" 
-                 ? parseInt(e.target.value) || 0 
-                 : e.target.value;
-    
-    setDatosBasicos({ [e.target.name]: value });
+    const { name, value } = e.target;
+    const parsedValue = parseFieldValue(name, value);
+    setDatosBasicos({ [name]: parsedValue });
   };
 
   const validateAndNext = () => {
@@ -113,20 +120,14 @@ function DatosBasicos() {
             >
               Tipo de Documento
             </label>
-            <select
+            <DynamicSelect
               name="id_tipo_documento"
               value={formData.datosBasicos.id_tipo_documento}
               onChange={handleChange}
+              config={FIELD_CONFIGURATIONS.id_tipo_documento}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-              required
-            >
-              <option value={0}>Seleccionar tipo de documento</option>
-              <option value={1}>Cédula de Ciudadanía</option>
-              <option value={2}>Cédula de Extranjería</option>
-              <option value={3}>Pasaporte</option>
-              {/* Añadir más opciones según sea necesario */}
-            </select>
+            />
           </div>
           <div>
             <label
@@ -153,20 +154,22 @@ function DatosBasicos() {
             >
               Lugar de Expedición
             </label>
-            <select
+            <DynamicSelect
               name="id_lugar_expedicion"
               value={formData.datosBasicos.id_lugar_expedicion}
               onChange={handleChange}
+              config={{
+                placeholder: "Seleccionar lugar de expedición",
+                options: [
+                  { value: 1, label: "Bogotá" },
+                  { value: 2, label: "Medellín" },
+                  { value: 3, label: "Cali" }
+                  // Añadir más opciones según sea necesario
+                ]
+              }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-              required
-            >
-              <option value={0}>Seleccionar lugar de expedición</option>
-              <option value={1}>Bogotá</option>
-              <option value={2}>Medellín</option>
-              <option value={3}>Cali</option>
-              {/* Añadir más opciones según sea necesario */}
-            </select>
+            />
           </div>
           <div>
             <label
@@ -175,21 +178,23 @@ function DatosBasicos() {
             >
               Rango de Edad
             </label>
-            <select
+            <DynamicSelect
               name="rango_edad"
               value={formData.datosBasicos.rango_edad}
               onChange={handleChange}
+              config={{
+                placeholder: "Seleccionar rango de edad",
+                options: [
+                  { value: 1, label: "18-25" },
+                  { value: 2, label: "26-35" },
+                  { value: 3, label: "36-45" },
+                  { value: 4, label: "46-60" },
+                  { value: 5, label: "61+" }
+                ]
+              }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-              required
-            >
-              <option value={0}>Seleccionar rango de edad</option>
-              <option value={1}>18-25</option>
-              <option value={2}>26-35</option>
-              <option value={3}>36-45</option>
-              <option value={4}>46-60</option>
-              <option value={5}>61+</option>
-            </select>
+            />
           </div>
           <div>
             <label
@@ -234,19 +239,14 @@ function DatosBasicos() {
             >
               Sexo
             </label>
-            <select
+            <DynamicSelect
               name="id_sexo"
               value={formData.datosBasicos.id_sexo}
               onChange={handleChange}
+              config={FIELD_CONFIGURATIONS.id_sexo}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-              required
-            >
-              <option value={0}>Seleccionar sexo</option>
-              <option value={1}>Masculino</option>
-              <option value={2}>Femenino</option>
-              <option value={3}>Otro</option>
-            </select>
+            />
           </div>
           <div>
             <label
@@ -255,20 +255,23 @@ function DatosBasicos() {
             >
               Discapacidad
             </label>
-            <select
+            <DynamicSelect
               name="id_discapacidad"
               value={formData.datosBasicos.id_discapacidad}
               onChange={handleChange}
+              config={{
+                placeholder: "Ninguna",
+                options: [
+                  { value: 1, label: "Visual" },
+                  { value: 2, label: "Auditiva" },
+                  { value: 3, label: "Física" },
+                  { value: 4, label: "Cognitiva" },
+                  { value: 5, label: "Otra" }
+                ]
+              }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-            >
-              <option value={0}>Ninguna</option>
-              <option value={1}>Visual</option>
-              <option value={2}>Auditiva</option>
-              <option value={3}>Física</option>
-              <option value={4}>Cognitiva</option>
-              <option value={5}>Otra</option>
-            </select>
+            />
           </div>
           <div>
             <label
@@ -277,22 +280,24 @@ function DatosBasicos() {
             >
               Ciudad de Domicilio
             </label>
-            <select
+            <DynamicSelect
               name="ciudad_domicilio"
               value={formData.datosBasicos.ciudad_domicilio}
               onChange={handleChange}
+              config={{
+                placeholder: "Seleccionar ciudad",
+                options: [
+                  { value: 1, label: "Bogotá" },
+                  { value: 2, label: "Medellín" },
+                  { value: 3, label: "Cali" },
+                  { value: 4, label: "Barranquilla" },
+                  { value: 5, label: "Cartagena" }
+                  // Añadir más opciones según sea necesario
+                ]
+              }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-              required
-            >
-              <option value={0}>Seleccionar ciudad</option>
-              <option value={1}>Bogotá</option>
-              <option value={2}>Medellín</option>
-              <option value={3}>Cali</option>
-              <option value={4}>Barranquilla</option>
-              <option value={5}>Cartagena</option>
-              {/* Añadir más opciones según sea necesario */}
-            </select>
+            />
           </div>
           <div>
             <label
@@ -319,22 +324,25 @@ function DatosBasicos() {
             >
               Área de Derecho
             </label>
-            <select
+            <DynamicSelect
               name="id_area_derecho"
               value={formData.datosBasicos.id_area_derecho}
               onChange={handleChange}
+              config={{
+                placeholder: "Seleccionar área",
+                options: [
+                  { value: 1, label: "Civil" },
+                  { value: 2, label: "Penal" },
+                  { value: 3, label: "Laboral" },
+                  { value: 4, label: "Administrativo" },
+                  { value: 5, label: "Constitucional" },
+                  { value: 6, label: "Familiar" }
+                  // Añadir más opciones según sea necesario
+                ]
+              }}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm
               rounded-lg block w-full p-2.5"
-            >
-              <option value={0}>Seleccionar área</option>
-              <option value={1}>Civil</option>
-              <option value={2}>Penal</option>
-              <option value={3}>Laboral</option>
-              <option value={4}>Administrativo</option>
-              <option value={5}>Constitucional</option>
-              <option value={6}>Familiar</option>
-              {/* Añadir más opciones según sea necesario */}
-            </select>
+            />
           </div>
           <div className="md:col-span-2">
             <label
@@ -369,3 +377,58 @@ function DatosBasicos() {
 }
 
 export default DatosBasicos;
+
+
+interface SelectOption {
+  value: number;
+  label: string;
+}
+
+interface FieldConfig {
+  options: SelectOption[];
+  placeholder: string;
+}
+
+const FIELD_CONFIGURATIONS: Record<string, FieldConfig> = {
+  id_tipo_documento: {
+    placeholder: "Seleccionar tipo de documento",
+    options: [
+      { value: 1, label: "Cédula de Ciudadanía" },
+      { value: 2, label: "Cédula de Extranjería" },
+      { value: 3, label: "Pasaporte" }
+    ]
+  },
+  id_sexo: {
+    placeholder: "Seleccionar sexo",
+    options: [
+      { value: 1, label: "Masculino" },
+      { value: 2, label: "Femenino" },
+      { value: 3, label: "Otro" }
+    ]
+  }
+};
+
+
+interface DynamicSelectProps {
+  name: string;
+  value: number;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  config: FieldConfig;
+  className?: string;
+}
+
+
+const DynamicSelect: React.FC<DynamicSelectProps> = ({
+  name, value,
+  onChange, config,
+  className
+}) => (
+  <select name={name} value={value} onChange={onChange} className={className}>
+    <option value={0}>{config.placeholder}</option>
+    {config.options.map(option => (
+      <option key={option.value} value={option.value}>
+        {option.label}
+      </option>
+    ))}
+  </select>
+);
